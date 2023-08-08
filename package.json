@@ -1,20 +1,20 @@
 {
-  "name": "@felipevelascohz/sqs",
-  "version": "1.0.12",
+  "name": "@felipevelascohz/iam-user",
+  "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "rm -rf sqs.* index.* && tsc",
+    "build": "rm -rf iam.* index.* && tsc",
     "test": "jest",
-    "publish-package": "npm run build && npm publish && rm -rf sqs.* index.*"
+    "publish-package": "npm run build && npm publish && rm -rf iam.* index.*"
   },
   "files": [
-    "sqs.*",
+    "iam.*",
     "index.*"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/felipevelascohz/sqs.git"
+    "url": "https://github.com/felipevelascohz/iam-user.git"
   },
   "publishConfig": {
     "access": "public"
@@ -22,7 +22,7 @@
   "keywords": [
     "AWS",
     "CDK",
-    "SQS"
+    "IAM"
   ],
   "author": "Felipe Velasco",
   "license": "ISC",

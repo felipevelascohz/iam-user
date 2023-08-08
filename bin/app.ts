@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
-import { Sqs } from '../src/sqs';
+import { IamUser } from '../src/iam-user';
 
-const iniciativa :string = 'IdSbxFelipeVelasco';
+const iniciativa :string = 'IdSbxFelipeVelascoIamUser';
 const provider = {
   account: process.env.CDK_DEFAULT_ACCOUNT, 
   region: process.env.CDK_DEFAULT_REGION 
@@ -11,10 +11,9 @@ const provider = {
 
 const app = new cdk.App();
 
-const stack = new cdk.Stack(app, iniciativa, {
+new IamUser(app, iniciativa, {
   env: provider
 })
 
-new Sqs(stack, iniciativa, {})
 
 app.synth();
