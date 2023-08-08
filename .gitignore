@@ -1,5 +1,5 @@
 node_modules/
 lib/
 cdk.out/
-./sqs.* 
+./iam*.* 
 ./index.*
