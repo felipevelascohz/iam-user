@@ -4,12 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "rm -rf iam.* index.* && tsc",
+    "build": "rm -rf iam*.* index.* && tsc",
     "test": "jest",
-    "publish-package": "npm run build && npm publish && rm -rf iam.* index.*"
+    "publish-package": "npm run build && npm publish && rm -rf iam*.* index.*"
   },
   "files": [
-    "iam.*",
+    "iam*.*",
     "index.*"
   ],
   "repository": {
