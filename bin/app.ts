@@ -3,7 +3,7 @@ import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
 import { IamUser } from '../src/iam-user';
 
-const iniciativa :string = 'IdSbxFelipeVelascoIamUser';
+const iniciativa :string = 'GitHubUser';
 const provider = {
   account: process.env.CDK_DEFAULT_ACCOUNT, 
   region: process.env.CDK_DEFAULT_REGION 

@@ -1,7 +1,7 @@
 import { Construct } from 'constructs';
 import * as iam from 'aws-cdk-lib/aws-iam';
 import * as cdk from 'aws-cdk-lib';
-import * as secretsmanager from 'aws-cdk-lib/aws-secretsmanager';
+
 export class IamUser extends cdk.Stack {
     constructor(stack:Construct, id:string, props?: cdk.StackProps) {
         super(stack, id, props);
@@ -12,6 +12,8 @@ export class IamUser extends cdk.Stack {
         lambdaUser.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonVPCReadOnlyAccess'));
         lambdaUser.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('AWSCodeDeployDeployerAccess'));
         lambdaUser.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('AWSLambda_FullAccess'));
+        lambdaUser.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('AWSStepFunctionsFullAccess'));
+        lambdaUser.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonAPIGatewayAdministrator'));
         const cloudFormationLambdaPolicy = new iam.Policy(this, 'CloudFormationLambdaPolicy', {
             statements: [new iam.PolicyStatement({
                 actions: [
@@ -107,15 +109,12 @@ export class IamUser extends cdk.Stack {
         lambdaUser.attachInlinePolicy(iamLambdaPolicy);
         lambdaUser.attachInlinePolicy(s3LambdaPolicy);
         const accessKey = new iam.AccessKey(this, 'lambdaUserAcessKey', {user: lambdaUser});
-        new secretsmanager.Secret(this, 's', {
-            secretStringValue: accessKey.secretAccessKey,
-        });
         new cdk.CfnOutput(this, 'Id', {
             value: accessKey.accessKeyId
         });
         
-        /*new cdk.CfnOutput(this, 'Secret', {
+        new cdk.CfnOutput(this, 'Secret', {
             value: accessKey.secretAccessKey.unsafeUnwrap()
-        })*/
+        });
     };
 };
